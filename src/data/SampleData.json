@@ -1,0 +1,101 @@
+[
+  {
+    "doc": {
+      "_key": "a6g072021a243c4g",
+      "_id": "audios/a6g072021a243c4g",
+      "_rev": "_f8w9r2i--A",
+      "attribute1": 0.5796746734324985,
+      "country": "SouthTemperateZone",
+      "longitude": 155.97872206733706,
+      "attribute2": 0.561985966212417,
+      "true_sighting_id": "cd9995ada18dfa89",
+      "timestamp": "2018-07-30T14:58:31",
+      "latitude": -58.563391959899015,
+      "species": "Eagle"
+    },
+    "edges": [
+      {
+        "_key": "g74f3521a18bde4f",
+        "_id": "edge-audios/g74f3521a18bde4f",
+        "_from": "audios/a6g072021a243c4g",
+        "_to": "audios/0a471058edf9b013",
+        "_rev": "_f8xAJMC---"
+      },
+      {
+        "_key": "22g5435871gb5428",
+        "_id": "edge-audios/22g5435871gb5428",
+        "_from": "audios/b78a9a3fa120df36",
+        "_to": "audios/a6g072021a243c4g",
+        "_rev": "_f8xAJMC--C"
+      },
+      {
+        "_key": "99a5067af2db392f",
+        "_id": "edge-audios/99a5067af2db392f",
+        "_from": "audios/a893c5e5d25cc1g5",
+        "_to": "audios/a6g072021a243c4g",
+        "_rev": "_f8xAJMC--D"
+      },
+      {
+        "_key": "8806dcge0fe86g4f",
+        "_id": "edge-audios/8806dcge0fe86g4f",
+        "_from": "audios/bad6ebca8g817gg7",
+        "_to": "audios/a6g072021a243c4g",
+        "_rev": "_f8xAJMC--E"
+      }
+    ],
+    "connectedDocs": [
+      {
+        "_key": "0a471058edf9b013",
+        "_id": "audios/0a471058edf9b013",
+        "_rev": "_f8w9r2i--_",
+        "attribute1": 0.5471407312251118,
+        "country": "SouthTemperateZone",
+        "longitude": 155.97872206733706,
+        "attribute2": 0.8737372770079097,
+        "true_sighting_id": "cd9995ada18dfa89",
+        "timestamp": "2018-07-30T14:58:21",
+        "latitude": -58.563391959899015,
+        "species": "Eagle"
+      },
+      {
+        "_key": "b78a9a3fa120df36",
+        "_id": "audios/b78a9a3fa120df36",
+        "_rev": "_f8w9r2i--B",
+        "attribute1": 0.3969826585094328,
+        "country": "SouthTemperateZone",
+        "longitude": 155.97872206733706,
+        "attribute2": 0.12048184033665321,
+        "true_sighting_id": "cd9995ada18dfa89",
+        "timestamp": "2018-07-30T14:58:41",
+        "latitude": -58.563391959899015,
+        "species": "Eagle"
+      },
+      {
+        "_key": "a893c5e5d25cc1g5",
+        "_id": "audios/a893c5e5d25cc1g5",
+        "_rev": "_f8w9r2i--C",
+        "attribute1": 0.14932465862351918,
+        "country": "SouthTemperateZone",
+        "longitude": 155.97872206733706,
+        "attribute2": 0.9643724964454004,
+        "true_sighting_id": "cd9995ada18dfa89",
+        "timestamp": "2018-07-30T14:58:51",
+        "latitude": -58.563391959899015,
+        "species": "Eagle"
+      },
+      {
+        "_key": "bad6ebca8g817gg7",
+        "_id": "audios/bad6ebca8g817gg7",
+        "_rev": "_f8w9r2i--D",
+        "attribute1": 0.8277811283852388,
+        "country": "SouthTemperateZone",
+        "longitude": 155.97872206733706,
+        "attribute2": 0.19371490246741196,
+        "true_sighting_id": "cd9995ada18dfa89",
+        "timestamp": "2018-07-30T14:59:01",
+        "latitude": -58.563391959899015,
+        "species": "Eagle"
+      }
+    ]
+  }
+]
