@@ -3,10 +3,15 @@ import dataItems from "../data/SampleData.json";
 import { Row, Col } from "react-bootstrap";
 import { DataItem } from "../components/DataItem";
 import { Fragment } from "react";
+import { FastAPIClient } from "../client";
 
 export function Home() {
   var counter = 0;
   {
+    const client = new FastAPIClient('https://www.localhostdomain.com');
+    client.getColectionNameData().then((data:any) => {
+      console.log(data);
+    });
     dataItems.map((item, index) => (counter = index));
   }
 
