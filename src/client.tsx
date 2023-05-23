@@ -60,7 +60,10 @@ export class FastAPIClient {
           edgeCollection,
           excludeEdges,
           collectionFilter
-        }
+        },
+        headers: {
+          Accept: 'application/json', // Specify JSON response
+        },
       });
       return response.data;
     } catch (error) {
