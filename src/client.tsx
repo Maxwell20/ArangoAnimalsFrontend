@@ -7,6 +7,7 @@ export class FastAPIClient {
     this.baseURL = baseURL;
   }
 
+
   public async getColectionNameData(): Promise<any> {
     try {
       console.debug(`${this.baseURL}/get_collection_names`);

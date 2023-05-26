@@ -1,33 +1,26 @@
 import { Row, Col } from "react-bootstrap";
 import { DataItem } from "../components/DataItem";
 import { Fragment } from "react";
-import React, { useState, useEffect } from 'react';
-import { FastAPIClient } from "../client";
+import { useState, useEffect } from "react";
+import { makeQuery, makeInitialQuery } from "../utilities/makeQuery";
+
+interface homeProps {
+  data: any[]
+  updateData: (newData: any[]) => void
+}
 
 export function Home() {
   const [data, setData] = useState<any[]>([]);
   const [counter, setCounter] = useState<number>(0);
 
+
+  const initialQueryData = makeInitialQuery()
+  const queryData = makeQuery({collections: "sightings", pageSize: 6, pageNumber: 1})
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const client = new FastAPIClient('https://www.localhostdomain.com');
-
-        const names = await client.getColectionNameData();
-        console.log(names);
-
-        const response = await client.getDocumentsPaged("sightings", 10, 1, null, null, null, null, 65, 69, null, null, null, null, null, null, true, "edge-sightings", null, null);
-        console.log(response);
-        
-        const dataItems = await response
-        setData(dataItems);
-      } catch (error) {
-        console.error('Error fetching paged documents:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
+    if (queryData && queryData != null){
+      setData(queryData)
+    }
+  },[queryData]); 
 
   useEffect(() => {
     setCounter(data.length);
@@ -59,12 +52,13 @@ export function Home() {
         <Row md={2} xs={1} lg={3} className="g-3">
           {data.map((item: any) => (
             <Fragment key={item.doc._key}>
-              {item.connectedDocs.map((data: any) =>
-                data != null && (
-                  <Col key={data._key}>
-                    <DataItem {...data} />
-                  </Col>
-                )
+              {item.connectedDocs.map(
+                (data: any) =>
+                  data != null && (
+                    <Col key={data._key}>
+                      <DataItem {...data} />
+                    </Col>
+                  )
               )}
             </Fragment>
           ))}
@@ -73,4 +67,3 @@ export function Home() {
     </>
   );
 }
-

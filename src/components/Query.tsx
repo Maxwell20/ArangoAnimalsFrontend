@@ -1,6 +1,6 @@
 import { Button, Offcanvas, Stack } from "react-bootstrap";
 import { useQuery } from "../context/QueryContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactDatePicker from "react-datepicker";
 import TimePicker from "react-time-picker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,19 +8,19 @@ import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Select from "react-select";
+import { FastAPIClient } from "../client";
 
 type QueryProps = {
   isOpen: boolean;
 };
 
+interface collectionNames {
+  value: string;
+  label: string;
+}
+
 export function Query({ isOpen }: QueryProps) {
   // state variables for handling input
-  const collections = [
-    { value: "all", label: "all" },
-    { value: "collection 1", label: "collection 1" },
-    { value: "collection 2", label: "collection 2" },
-    { value: "collection 3", label: "collection 3" },
-  ];
   const defaultCollection = [{ value: "all", label: "all" }];
   const { closeQuery } = useQuery();
   const [collection, setCollection] = useState(defaultCollection);
@@ -39,7 +39,27 @@ export function Query({ isOpen }: QueryProps) {
   const [att1End, setAtt1End] = useState("");
   const [att2Start, setAtt2Start] = useState("");
   const [att2End, setAtt2End] = useState("");
-  // TODO get collection list from API
+  const [collections, setCollections] = useState<collectionNames[]>([]);
+  // get collection list from API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const client = new FastAPIClient("https://192.168.1.70");
+        const names = await client.getColectionNameData();
+        const collectionNames = names[0].join(",");
+        const edgeCollectionNames = names[1].join(",");
+        collections.push({ value: "all", label: "all" });
+        if (collections.length - 1 < names[0].length) {
+          names[0].map((item: any) =>
+            collections.push({ value: item, label: item })
+          );
+        }
+      } catch (error) {
+        console.error("Error fetching paged documents:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   // handling functions for modifying input variables
   function handleSelectStartTime(time: any) {
@@ -204,11 +224,30 @@ export function Query({ isOpen }: QueryProps) {
       alert("Start time must be before end time!");
       return;
     }
+    // get just the names from the collection object
+    var collectionNameArray = [];
+    for (var obj in collection) {
+      collectionNameArray.push(collection[obj].value);
+    }
+    // convert collection names to comma separated string
+    // if 'all' is selected, ignore others
+    var collectionNameList = "";
+    const hasAll = collectionNameArray.some((element) => {
+      if (element === "all") {
+        return true;
+      }
+    });
+    if (hasAll) {
+      collectionNameList = "all";
+    } else {
+      collectionNameList = collectionNameArray.join(",");
+    }
+
     // TODO replace alert with API call to update json file/data
     // TODO figure out how to get the data out of 'collection'
     alert(
       "The chosen collection was : " +
-        collection[0].value +
+        collectionNameList +
         `\n` +
         "The chosen species was : " +
         species +
@@ -267,6 +306,9 @@ export function Query({ isOpen }: QueryProps) {
           <div style={{ fontSize: "1rem" }}>Only enter fields to search on</div>
           <div style={{ fontSize: "1rem" }}>
             Requierd fields are marked with *
+          </div>
+          <div style={{ fontSize: "1rem" }}>
+            If "all" is selected, any other collection will be ignored on submit
           </div>
         </Offcanvas.Title>
       </Offcanvas.Header>
