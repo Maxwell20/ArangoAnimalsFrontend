@@ -35,7 +35,7 @@ export class FastAPIClient {
     attribute2Start: number | null = 0,
     attribute2End: number | null = 0,
     includeEdges: boolean | null = false,
-    edgeCollection: string | null = "",
+    edgeCollections: string | null = "",
     excludeEdges: boolean | null = false,
     collectionFilter: string | null = ""
   ): Promise<any> {
@@ -58,7 +58,7 @@ export class FastAPIClient {
           attribute2Start,
           attribute2End,
           includeEdges,
-          edgeCollection,
+          edgeCollections,
           excludeEdges,
           collectionFilter
         },

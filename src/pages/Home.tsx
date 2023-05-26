@@ -15,7 +15,7 @@ export function Home() {
 
 
   const initialQueryData = makeInitialQuery()
-  const queryData = makeQuery({collections: "sightings", pageSize: 6, pageNumber: 1})
+  const queryData = makeQuery({collections: "audios", pageSize: 6, pageNumber: 1})
   useEffect(() => {
     if (queryData && queryData != null){
       setData(queryData)

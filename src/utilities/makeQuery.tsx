@@ -45,7 +45,7 @@ export function makeQuery({
   collectionFilter,
 }: makeQueryProps) {
   const [data, setData] = useState<any[]>([]);
-  edgeCollection = "edges-sightings"
+  edgeCollection = "edge-audios"
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -108,7 +108,7 @@ export function makeInitialQuery() {
           null,
           null,
           true,
-          "edges-sightings",
+          "edge-sightings",
           null,
           null
         );
